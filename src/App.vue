@@ -153,7 +153,10 @@ export default {
       students: [
         { name: 'Nguyễn Văn A', age: 18, class: '12A' },
         { name: 'Trần Thị B', age: 17, class: '11B' },
-        { name: 'Phạm Văn C', age: 19, class: '12C' }
+        { name: 'Phạm Văn C', age: 19, class: '12C' },
+        { name: 'Nguyễn Văn D', age: 17, class: '12A' },
+        { name: 'Trần Thị E', age: 17, class: '12A' },
+        { name: 'Phạm Văn C', age: 19, class: '12C' },
       ],
       // Dữ liệu cho popup thêm sinh viên
       newStudent: {

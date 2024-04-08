@@ -11,12 +11,6 @@ h2 {
     text-align: center;
     margin-top: 20px;
 }
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-}
-
 thead th {
     background-color: #f2f2f2;
     text-align: left;
@@ -35,17 +29,31 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #ddd;
 }
-
+button:hover {
+    background-color: #950000;
+}
+table button:hover {
+    background-color: #45a049; /* Màu nền của nút khi di chuột qua */
+  }
 .button-container {
-    text-align: center;
+    display: flexbox; /* Sử dụng flexbox */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  height: 100%; /* Chiều cao của container */
 }
 
 .button-container button {
-    margin: 0 10px;
-}
+    /* CSS của nút */
+    padding: 10px 20px; /* Kích thước của nút */
+    background-color: #4CAF50; /* Màu nền của nút */
+    color: white; /* Màu văn bản của nút */
+    border: none; /* Loại bỏ viền của nút */
+    cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột qua nút */
+    border-radius: 5px; /* Bo góc của nút */
+  }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 30px;
     font-size: 16px;
     background-color: crimson;
     color: #fff;
@@ -54,9 +62,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #950000;
-}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -73,52 +78,5 @@ table {
   tbody tr:hover {
     background-color: #f2f2f2;
   }
-.pagination {
-    margin-top: 20px;
-    text-align: center;
-  }
-  .pagination button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-  }
-  .pagination button:disabled {
-    background-color: #ddd;
-    color: #aaa;
-    cursor: not-allowed;
-  }
-  .location-dropdown {
-    position: relative;
-    display: inline-block;
-  }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
 
-  .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    background-color: white;
-    border: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-  }
-
-  .dropdown-content button:hover {
-    background-color: #f1f1f1;
-  }
-
-  .location-dropdown:hover .dropdown-content {
-    display: block;
-  }
