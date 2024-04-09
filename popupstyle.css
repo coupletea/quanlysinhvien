@@ -12,10 +12,10 @@
   
   .modal-content {
     font-family: Arial, sans-serif;
-    background-color: #fefefe;
+    background-color: #020202;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #8d8b8b;
     width: 50%;
   }
   
@@ -35,6 +35,7 @@
   
   /* CSS cho các input và label trong modal */
   .modal-content input {
+    background-color: #e2e4e0;
     width: calc(100% - 20px);
     padding: 8px;
     margin-bottom: 10px;
@@ -62,7 +63,7 @@
   .class-list-modal {
     width: 300px; /* Chiều rộng của popup */
     padding: 20px;
-    background-color: #fff;
+    background-color: #241f1f;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Đổ bóng cho popup */
   }

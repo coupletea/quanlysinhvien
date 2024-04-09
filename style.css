@@ -1,5 +1,11 @@
-
-body {
+#app {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 2rem;
+}
+ 
+ body {
+  display: flex;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -12,23 +18,28 @@ h2 {
     text-align: center;
     margin-top: 20px;
 }
+thead tr {
+  background-color: #181515;
+  padding: 10px;
+  text-align: center;
+}
 thead th {
-    background-color: #f2f2f2;
+    background-color: #000000;
     text-align: left;
     padding: 10px;
 }
 
 tbody td {
-    border: 1px solid #ddd;
+    border: 1px solid #5f5151;
     padding: 10px;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #08151b18;
 }
 
 tbody tr:hover {
-    background-color: #ddd;
+    background-color: #4e1919;
 }
 button:hover {
     background-color: #950000;
@@ -47,7 +58,7 @@ table button:hover {
     /* CSS của nút */
     padding: 10px 20px; /* Kích thước của nút */
     background-color: #4CAF50; /* Màu nền của nút */
-    color: white; /* Màu văn bản của nút */
+    color: rgb(29, 17, 17); /* Màu văn bản của nút */
     border: none; /* Loại bỏ viền của nút */
     cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột qua nút */
     border-radius: 5px; /* Bo góc của nút */
@@ -77,7 +88,7 @@ table {
     background-color: #f2f2f2;
   }
   tbody tr:hover {
-    background-color: #f2f2f2;
+    background-color: #706969;
   }
 
 

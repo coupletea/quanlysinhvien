@@ -186,5 +186,6 @@ export default {
 <style >
 /* Style cho popup */
 @import '/popupstyle.css';
+@import '/style.css';
 </style>
 
