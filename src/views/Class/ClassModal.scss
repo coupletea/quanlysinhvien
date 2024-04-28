@@ -1,0 +1,150 @@
+// Các biến màu có thể tái sử dụng
+$primary-color: #007bff;
+$hover-color: #0056b3;
+$error-color: red;
+$background-color: rgb(241, 241, 241);
+$close-color: #180202;
+$close-hover-color: rgb(133, 129, 129);
+$button-text-color: white; // Màu chữ trắng để đảm bảo đọc được
+$button-border-radius: 5px; // Độ cong viền nhẹ
+$button-padding: 12px 24px; // Đệm để nút có kích thước lớn hơn và thoải mái khi nhấn
+$button-font-size: 16px; // Kích thước font lớn và dễ đọc
+$button-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Box shadow nhẹ cho hiệu ứng nổi bật
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(77, 77, 77, 0.4);
+
+  .modal-dialog {
+    position: relative;
+    margin: 20% auto;
+    padding: 20px;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 10px;
+  }
+
+  .modal-content {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >div {
+      flex: 1;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 20px;
+    }
+
+    input[type="text"],
+    select {
+      width: calc(100% - 10px);
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: $button-padding;
+      background-color: $primary-color;
+      color: $button-text-color;
+      border: none; // Không cần viền nếu bạn muốn nền đồng nhất
+      border-radius: $button-border-radius;
+      cursor: pointer;
+      font-size: $button-font-size;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: #0056b3;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); // Box shadow đậm hơn khi hover
+      }
+
+      &:active {
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); // Box shadow bên trong khi nút được nhấn
+      }
+    }
+  }
+
+  .error-container {
+    position: relative;
+
+    .error {
+      position: absolute;
+      color: $error-color;
+      visibility: hidden;
+      margin-bottom: 40px;
+
+      &.active {
+        visibility: visible;
+      }
+    }
+  }
+
+  .close {
+    position: absolute; // Sử dụng absolute để định vị cố định trong modal
+    top: 20px; // Đặt khoảng cách từ đỉnh
+    right: 20px; // Đặt khoảng cách từ cạnh phải
+    color: $close-color;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      color: $close-hover-color;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.main {
+  padding: 20px;
+  background-color: $background-color;
+
+  .classroom-container {
+    margin-top: 20px;
+  }
+  .create-container {
+    margin-bottom: 20px;
+    .button {
+      padding: $button-padding;
+      background-color: $primary-color;
+      color: $button-text-color;
+      border: none; // Không cần viền nếu bạn muốn nền đồng nhất
+      border-radius: $button-border-radius;
+      cursor: pointer;
+      font-size: $button-font-size;
+      transition: background-color 0.3s, box-shadow 0.3s; // Chuyển đổi mượt mà cho hover và shadow
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: #0056b3;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); // Box shadow đậm hơn khi hover
+      }
+
+      &:active {
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); // Box shadow bên trong khi nút được nhấn
+      }
+    }
+  }
+  .pagination-container {
+    margin-top: 20px;
+  }
+}

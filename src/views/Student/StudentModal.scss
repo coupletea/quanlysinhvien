@@ -1,0 +1,166 @@
+.student-container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  
+    > div {
+      width: 100%;
+  
+      &:last-child {
+        margin-top: 20px;
+      }
+    }
+  
+    table {
+      width: 100%;
+      
+    }
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    min-height: 1%; /* Bảng sẽ chiếm ít nhất một nửa chiều cao của viewport */
+     overflow-y: auto; /* Cho phép cuộn nếu cần */
+  
+    input[type="text"],
+    input[type="number"],
+    select {
+      margin-right: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  
+      &.text, &.number {
+        width: 200px;  // Độ rộng của input
+      }
+  
+      &.select {
+        width: 220px;  // Độ rộng của select
+      }
+    }
+  }
+  
+  .btn-create-container {
+    margin-bottom: 20px;
+  
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+  
+      &:hover {
+        background-color: #0056b3;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); // Box shadow đậm hơn khi hover
+      }
+    
+      &:active {
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); // Box shadow bên trong khi nút được nhấn
+      }
+    }
+  }
+  
+  .pagination-container {
+    margin-top: 20px;
+  }
+  
+  .modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(3, 3, 3, 0.4);
+  
+    &-content {
+      background-color: #f5f3f3;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #757575;
+      border-radius: 10px;
+      width: 70%;
+      height: 200px;
+      overflow-y: auto;
+    }
+  
+    &-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  
+    label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+  
+    input[type="text"],
+    input[type="date"],
+    select {
+      width: 200px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+      
+        &:hover {
+          background-color: #0056b3;
+          box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); // Box shadow đậm hơn khi hover
+        }
+      
+        &:active {
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); // Box shadow bên trong khi nút được nhấn
+        }
+    }
+  
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+  }
+  
+  .close {
+    color: #180202;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  
+    &:hover,
+    &:focus {
+      color: rgb(133, 129, 129);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+  
+  .hide {
+    display: block;
+  }
+  
