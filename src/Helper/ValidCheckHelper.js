@@ -1,6 +1,6 @@
 // Hàm tối ưu kiểm tra tính hợp lệ
 export const validCheck = (data, existingNames = []) => {
-  const errors = Object.entries(data).flatMap(([key, field]) => {
+  const errors = Object.entries(data).reduce((acc, [key, field]) => {
     if (field.rules && field.rules.length > 0) {
       for (const rule of field.rules) {
         const result = typeof rule === "function" 
@@ -8,14 +8,16 @@ export const validCheck = (data, existingNames = []) => {
           : rule[0](field.value, rule[1]);
 
         if (!result.valid) {
-          return { key, error: result.error };
+          data[key].error = result.error;
+          acc.push({ key, error: result.error });
+          break; // Dừng kiểm tra nếu đã tìm thấy lỗi
+        } else {
+          delete data[key].error; // Xóa lỗi nếu không có lỗi được tìm thấy
         }
       }
     }
-    return [];
-  });
-
-  errors.forEach(({ key, error }) => data[key].error = error);
+    return acc;
+  }, []);
 
   return errors.length > 0;
 };
@@ -29,7 +31,7 @@ export const validRequired = (value) => ({
 // Hàm kiểm tra độ dài tối đa
 export const validMaxlength = (value, length) => ({
   valid: value != null && value.length <= length,
-  error: `Độ dài tói đa ${length}.`,
+  error: `Độ dài tối đa ${length}.`,
 });
 
 // Hàm kiểm tra độ dài tối thiểu
@@ -40,6 +42,6 @@ export const validMinlength = (value, length) => ({
 
 // Hàm kiểm tra tên lớp học không trùng lặp
 export const validUnique = (value, existingNames) => ({
-  valid: !existingNames.includes(value),
+  valid: !existingNames.includes(value.trim()), // Cải thiện việc kiểm tra bằng cách loại bỏ khoảng trắng
   error: "Lớp đã tồn tại.",
 });

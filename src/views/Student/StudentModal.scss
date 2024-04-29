@@ -43,7 +43,20 @@
       &.select {
         width: 220px;  // Độ rộng của select
       }
+
+      select option:checked {
+        background: #f0f0f0; /* Một màu nền nhẹ nhàng khi option được chọn */
+      }
+      
+      /* Hiệu ứng hover cho các option */
+      select option:hover {
+        background: #913d3d;
+      }
+      select-placeholder {
+        color: grey; /* Đặt màu cho placeholder giống như disabled */
+      }
     }
+    
   }
   
   .btn-create-container {
@@ -122,6 +135,7 @@
   
     button {
       padding: 8px 16px;
+      margin-left: 20px;
       background-color: #007bff;
       color: #fff;
       border: none;
@@ -151,6 +165,7 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-bottom: 0px;
   
     &:hover,
     &:focus {

@@ -2,10 +2,10 @@
   <main>
     <div class="student-container">
       <div class="search-container">
-        <input type="text" placeholder="Họ tên" v-model="searchForm.name" @input="onSearch" />
-        <input type="number" placeholder="Tuổi" v-model="searchForm.age" @input="onSearch" />
+        <input type="text" placeholder="Tìm kiếm theo tên" v-model="searchForm.name" @input="onSearch" />
+        <input type="number" placeholder="Tìm kiếm theo tuổi" v-model="searchForm.age" @input="onSearch" />
         <select v-model="searchForm.classroom" @change="onSearch">
-          <option value="">Tất cả các lớp</option>
+          <option value="" disabled selected>Lớp</option>
           <option v-for="(item, index) in classrooms" :key="index" :value="item.id">{{ item.name }}</option>
         </select>
       </div>
@@ -24,7 +24,6 @@
 <script>
 import StudentTable from "../../components/StudentTable.vue";
 import PaginationTab from "../../components/PaginationTab.vue";
-import router, { staticPath } from "../../router";
 import { deleteStudent, getListStudents } from "../../Service/StudentService";
 import { getAllClassrooms } from "@/Service/ClassroomService";
 import CreateStudentModal from "./CreateStudentModal.vue";
@@ -48,8 +47,11 @@ export default {
       },
       pagination: {
         page: 1,
-        limit: 3,
+        limit: 5,
         total: 0,
+      },
+      searchForm: {
+        classroom: '',
       },
 
     };
@@ -90,13 +92,13 @@ export default {
       this.getStudents();
     },
     onCreate() {
-      router.push(staticPath.createStudent);
+      this.$router.push({ name: 'createstudent-route' });
     },
-    onUpdate(e) {
-      router.push(staticPath.updateStudent + `/${e}`);
+    onUpdate(id) {
+      this.$router.push({ name: 'updatestudent-route', params: { id } });
     },
-    onDelete(e) {
-      deleteStudent(e);
+    onDelete(id) {
+      deleteStudent(id);
       this.getStudents();
     },
     onPageChange(e) {

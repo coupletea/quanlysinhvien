@@ -4,41 +4,37 @@ import CreateStudentModal from '../views/Student/CreateStudentModal.vue';
 import ClassListModal from "../views/Class/ClassListModal.vue";
 import CreateClassModal from '@/views/Class/CreateClassModal.vue';
 
-export const staticPath = {
-  student: "/student",
-  createStudent: "/student/create",
-  updateStudent: "/student/update",
-  classroom: "/classroom",
-  createClassroom: "/classroom/create",
-  updateClassroom: "/classroom/update"
-
-};
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes:[
     {
-      path: staticPath.student,
+      path: "/student",
+      name: "student-route",
       component: StudentView,
     },
     {
-      path: staticPath.createStudent,
+      path: "/student/create",
+      name: "createstudent-route",
       component: CreateStudentModal,
     },
     {
-      path: staticPath.updateStudent + "/:id",
+      path: "/student/update/:id",
+      name: "updatestudent-route",
       component: CreateStudentModal,
     },
     {
-      path: staticPath.classroom,
+      path: "/classroom",
+      name: "classroom-route",
       component: ClassListModal,
     },
     {
-      path: staticPath.createClassroom,
+      path: "/classroom/create",
+      name: "createclassroom-route",
       component: CreateClassModal,
     },
     {
-      path: staticPath.updateClassroom + "/:id",
+      path: "/classroom/update/:id",
+      name: "updateclassroom-route",
       component: CreateClassModal,
     }
 

@@ -6,8 +6,8 @@
         <!-- <HelloWorld msg="You did it!" /> -->
           <div>EzStudy</div>
             <nav class="title">
-             <router-link to="/student">Student</router-link>
-             <router-link to="/classroom">Classroom</router-link>
+             <router-link :to="{ name:'student-route' }">Student</router-link>
+             <router-link :to="{ name:'classroom-route'}">Classroom</router-link>
             </nav>
         </div>
       
@@ -56,6 +56,8 @@ nav.title > router-link {
 
 nav.title > router-link:hover {
     text-decoration: underline;
+    border: #248d5c;
+    border-radius: 10px;
 }
 
 </style>

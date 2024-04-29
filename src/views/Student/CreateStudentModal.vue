@@ -1,3 +1,4 @@
+User
 <template>
   <div class="modal fade show">
     <div class="modal-dialog">
@@ -30,11 +31,11 @@
   </div>
 </template>
 <script>
-import router, { staticPath } from '@/router';
+import router from '@/router';
 import { useRoute } from 'vue-router';
 import { createStudent, updateStudent, getStudentById } from '@/Service/StudentService';
 import { calculateAge } from '@/Helper/AgeHelper';
-import { getAllClassrooms, createClassroom } from '@/Service/ClassroomService';
+import { getAllClassrooms } from '@/Service/ClassroomService';
 import { validCheck, validRequired, validMaxlength, validMinlength } from '@/Helper/ValidCheckHelper';
 
 
@@ -74,7 +75,7 @@ export default {
     checkRoute() {
       let route = useRoute();
       this.id = route.params.id;
-      if (route.path.indexOf(staticPath.updateStudent) > -1) {
+      if (route.name === 'updatestudent-route') {
         this.isUpdate = true;
         this.fetchStudent();
       }
@@ -104,11 +105,11 @@ export default {
       };
       this.$emit('close');
       router.back()
-      
+
     },
     closeModal() {
-      router.push(staticPath.student)
       this.$emit('close');
+      router.back()
     }
   },
   created() {
@@ -117,7 +118,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 /* CSS cho modal */
 @import "./StudentModal.scss";

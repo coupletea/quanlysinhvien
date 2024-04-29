@@ -30,7 +30,7 @@
 import { createClassroom, updateClassroom, getAllClassrooms, getClassroomById } from "../../Service/ClassroomService"
 import { validCheck, validMaxlength, validMinlength, validRequired, validUnique } from "@/Helper/ValidCheckHelper";
 import { useRoute } from "vue-router";
-import router, { staticPath } from "@/router";
+import router from "@/router";
 export default {
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
       form: {
         name: {
           value: null,
-          rules: [validRequired, [validMaxlength, 150], [validMinlength, 5], validUnique],
+          rules: [validRequired, [validMaxlength, 150], [validMinlength, 4], validUnique],
         },
         group: {
           value: null,
@@ -50,25 +50,44 @@ export default {
       id: null,
     };
   },
+  computed: {
+    route() {
+      return useRoute();
+    }
+  },
   methods: {
-    fetchClassrooms() {
-      var res = getAllClassrooms();
-      if (res) this.classrooms = res;
-    },
-    fetchClassroom() {
-      var classroom = getClassroomById(this.id);
-      if (classroom) {
-        this.form.name.value = classroom.name;
-        this.form.group.value = classroom.group;
+    async fetchClassrooms() {
+      try {
+        this.classrooms = await getAllClassrooms();
+        if (this.isUpdate) {
+          const classroom = await getClassroomById(this.id);
+          if (classroom) {
+            this.form.name.value = classroom.name;
+            this.form.group.value = classroom.group;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle errors appropriately
       }
     },
     // kiểm tra nếu là route update thì fetch dữ liệu
+    watch: {
+      'route.params.id': {
+        handler(newValue, oldValue) {
+          if (newValue !== oldValue) {
+            this.checkRoute();
+          }
+        },
+        immediate: true
+      }
+    },
     checkRoute() {
       let route = useRoute();
       this.id = route.params.id;
-      if (route.path.indexOf(staticPath.updateClassroom) > -1) {
+      if (route.name === 'updateclassroom-route') {
         this.isUpdate = true;
-        this.fetchClassroom();
+        this.fetchClassrooms();
       }
     },
 
@@ -82,7 +101,7 @@ export default {
       if (this.isUpdate) {
         const currentClassroom = getClassroomById(this.id);
         existingNames.splice(existingNames.indexOf(currentClassroom.name), 1);
-      }let isInvalid = validCheck(this.form, existingNames);
+      } let isInvalid = validCheck(this.form, existingNames);
 
       if (isInvalid) {
         this.form.showError = true;
@@ -92,7 +111,7 @@ export default {
         name: this.form.name.value,
         group: this.form.group.value,
       };
-      
+
       if (!this.isUpdate) {
         createClassroom(payload).then(() => {
           //this.$parent.createClassroom();
@@ -115,6 +134,7 @@ export default {
     this.checkRoute();
     this.fetchClassrooms();
   },
+
 };
 </script>
 <style scoped>

@@ -22,7 +22,6 @@
     </main>
 </template>
 <script>
-import router, { staticPath } from '../../router';
 import PaginationTab from "@/components/PaginationTab.vue";
 import StudentTable from "../../components/StudentTable.vue";
 import { deleteClassroom, getListClassrooms } from "../../Service/ClassroomService";
@@ -53,17 +52,17 @@ export default {
       this.getClassrooms();
     },
     onCreate() {
-      router.push(staticPath.createClassroom);
+      this.$router.push({ name: 'createclassroom-route' });
     },
-    onUpdate(e) {
-      router.push(staticPath.updateClassroom + `/${e}`);
+    onUpdate(id) {
+      this.$router.push({ name: 'updateclassroom-route', params: { id } });
     },
-    onDelete(e) {
-      deleteClassroom(e);
+    onDelete(id) {
+      deleteClassroom(id);
       this.getClassrooms();
     },
-    onPageChange(e) {
-      this.pagination.page = e;
+    onPageChange(id) {
+      this.pagination.page = id;
       this.getClassrooms();
     },
   },
