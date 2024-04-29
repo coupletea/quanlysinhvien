@@ -22,29 +22,34 @@ export const getClassroomById = (id) => {
   const classrooms = JSON.parse(localStorage.getItem(classroomsKey) || '[]');
   return classrooms.find((item) => item.id == id);
 };
-export const flatClassTree = (nodes, depth = 0) => nodes.reduce((acc, node) => {
-  acc.push({ name: "---".repeat(depth) + node.name, group: node.group, id: node.id });
-  if (node.children) {
-    acc = acc.concat(flatClassTree(node.children, depth + 1));
-  }
+//chuyển đổi data structure
+export const flatClassTree = (nodes, depth = 0, acc = []) => {
+  nodes.forEach(node => {
+    acc.push({ name: "---".repeat(depth) + node.name, group: node.group, id: node.id });
+    if (node.children) {
+      flatClassTree(node.children, depth + 1, acc);
+    }
+  });
   return acc;
-}, []);
+};
 
-export const getClassroomsRoot = (classrooms) => classrooms
-  .filter(item => !item.group)
-  .map(root => ({
+export const getClassroomsRoot = (classrooms) => {
+  const classroomMap = new Map(classrooms.map(c => [c.id, c]));
+
+  return classrooms.filter(c => !c.group).map(root => ({
     ...root,
-    children: getClassroomChildren(root, classrooms)
-  }));
-
-export const getClassroomChildren = (classroom, classrooms) => {
-  const children = classrooms.filter(item => item.group === classroom.id);
-  return children.map(child => ({
-    ...child,
-    children: getClassroomChildren(child, classrooms)
+    children: getClassroomChildren(root, classroomMap)
   }));
 };
 
+export const getClassroomChildren = (classroom, classroomMap) => {
+  return [...classroomMap.values()].filter(c => c.group === classroom.id)
+    .map(child => ({
+      ...child,
+      children: getClassroomChildren(child, classroomMap)
+    }));
+};
+// CRUD operations for classroom
 export const createClassroom = (payload) => {
   let classrooms = getDataKey(classroomsKey);
   payload.id = generateId(classrooms);
