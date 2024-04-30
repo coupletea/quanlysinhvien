@@ -47,7 +47,7 @@ export default {
       },
       pagination: {
         page: 1,
-        limit: 5,
+        limit: 3,
         total: 0,
       },
       searchForm: {

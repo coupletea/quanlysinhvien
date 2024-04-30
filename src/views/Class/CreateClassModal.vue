@@ -29,9 +29,15 @@
 <script>
 import { createClassroom, updateClassroom, getAllClassrooms, getClassroomById } from "../../Service/ClassroomService"
 import { validCheck, validMaxlength, validMinlength, validRequired, validUnique } from "@/Helper/ValidCheckHelper";
+import { ref, reactive, onMounted } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+import { required, maxLength, minLength } from '@vuelidate/validators';
 import { useRoute } from "vue-router";
 import router from "@/router";
 export default {
+  setup () {
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
       classrooms: [],
@@ -56,11 +62,11 @@ export default {
     }
   },
   methods: {
-    async fetchClassrooms() {
+     fetchClassrooms() {
       try {
-        this.classrooms = await getAllClassrooms();
+        this.classrooms =  getAllClassrooms();
         if (this.isUpdate) {
-          const classroom = await getClassroomById(this.id);
+          const classroom =  getClassroomById(this.id);
           if (classroom) {
             this.form.name.value = classroom.name;
             this.form.group.value = classroom.group;
